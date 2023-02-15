@@ -1,0 +1,109 @@
+<div cdkDropListGroup>
+  <div class="Candidate-Conatiner">
+    <h2>Unscheduled Candidate List</h2>
+
+    <div
+      cdkDropList
+      id="list-one"
+      [cdkDropListData]="unsceduledCandidates"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Candidate Name
+            </th>
+            <th>
+              Qulification
+            </th>
+            <th>
+              Years Of experience
+            </th>
+            <th>
+              <span>Scheduled interview date</span>
+            </th>
+            <th>
+              Info
+              </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of unsceduledCandidates;let i = index" cdkDrag>
+            <td>{{item.candidateName}}</td>
+            <td>{{item.qualification}}</td>
+            <td>{{item.yearsOfExperience}}</td>
+            <td>
+              
+            <mat-form-field>
+              <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" (dateChange)="selectDate($event,i)" >
+              <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+              <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="false"
+                         [stepHour]="1" [stepMinute]="1" [stepSecond]="1"
+                         [touchUi]="false" [enableMeridian]="false"
+                         [disableMinute]="false" [hideTime]="false" (dateChange)="selectDate($event,i)">
+                </ngx-mat-datetime-picker>
+            </mat-form-field>
+          </td>
+          <td>
+            <i ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-square-fill" viewBox="0 0 16 16">
+              <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.93 4.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+            </svg></i>
+          </td>
+          </tr>
+
+        </tbody>
+      </table>
+      <!-- <div class="example-box" *ngFor="let item of unsceduledCandidates" cdkDrag>{{item.candidateName}}</div> -->
+    </div>
+  </div>
+
+  <div class="Candidate-Conatiner">
+    <h2>Scheduled Candidate List</h2>
+
+    <div
+      cdkDropList
+      id="list-two"
+      [cdkDropListData]="sceduledCandidates"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Candidate Name
+            </th>
+            <th>
+              Qulification
+            </th>
+            <th>
+              Years Of experience
+            </th>
+            <th>
+              <span>Scheduled interview date &nbsp;<i (click)="sort()" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+              </svg></i></span>
+            </th>
+            <th>
+              Info
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of sceduledCandidates" cdkDrag>
+            <td>{{item?.candidateName}}</td>
+            <td>{{item?.qualification}}</td>
+            <td>{{item?.yearsOfExperience}}</td>
+            <td>{{item?.interviewDate}}</td>
+            <td>
+              <i ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-square-fill" viewBox="0 0 16 16">
+                <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.93 4.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg></i>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
